@@ -1,0 +1,22 @@
+# Данный файл - шаблонная конфигурация CI/CD конвейера. Он может быть изменен по Вашему усмотрению. 
+# Некоторые шаблоны требуют предварительной настройки перед запуском.
+#
+# Подробнее о синтаксисе можно узнать в документации:
+# https://docs.gitflic.ru/cicd/gitflic-ci-yaml
+
+image: ubuntu:latest
+
+stages:
+ # - test
+  - build
+  - deploy
+
+build:
+  stage: build
+  script: 
+    - gradle bootjar
+  artifacts:
+    paths: 
+      - build/libs/*.jar
+  only: 
+    - master
